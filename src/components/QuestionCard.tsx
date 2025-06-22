@@ -9,6 +9,10 @@ type QuestionCardProps = {
 export default function QuestionCard(props: QuestionCardProps) {
   const selectedOption = props.question.options[0];
 
+  const onOptionSelected = (option: string) => {
+    console.warn(option, "selected");
+  };
+
   return (
     <View style={styles.questionCard}>
       <Text style={styles.question}>{props.question.title}</Text>
@@ -16,18 +20,22 @@ export default function QuestionCard(props: QuestionCardProps) {
         <AnswerOption
           option={props.question.options[0]}
           isSelected={selectedOption === props.question.options[0]}
+          onPress={() => onOptionSelected(props.question.options[0])}
         />
         <AnswerOption
           option={props.question.options[1]}
           isSelected={selectedOption === props.question.options[1]}
+          onPress={() => onOptionSelected(props.question.options[1])}
         />
         <AnswerOption
           option={props.question.options[2]}
           isSelected={selectedOption === props.question.options[2]}
+          onPress={() => onOptionSelected(props.question.options[2])}
         />
         <AnswerOption
           option={props.question.options[3]}
           isSelected={selectedOption === props.question.options[3]}
+          onPress={() => onOptionSelected(props.question.options[3])}
         />
       </View>
     </View>
