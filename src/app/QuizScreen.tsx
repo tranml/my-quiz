@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -22,9 +22,14 @@ export default function QuizScreen() {
           <Text style={styles.time}>20s</Text>
         </View>
 
-        <View style={styles.button}>
+        <Pressable
+          style={styles.button}
+          onLongPress={() => {
+            console.warn("Next button pressed");
+          }}
+        >
           <Text style={styles.buttonText}>Next</Text>
-        </View>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
