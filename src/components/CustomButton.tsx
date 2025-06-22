@@ -1,15 +1,10 @@
-import {
-  Pressable,
-  Text,
-  StyleSheet,
-  View,
-  PressableProps,
-} from "react-native";
+import { Pressable, Text, StyleSheet, View } from "react-native";
+import { ComponentProps } from "react";
 
 type CustomButtonProps = {
   title: string;
   rightIcon?: React.ReactNode;
-} & PressableProps;
+} & ComponentProps<typeof Pressable>;
 
 export default function CustomButton({
   title,
