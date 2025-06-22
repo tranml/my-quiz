@@ -8,8 +8,13 @@ type AnswerOptionProps = {
 
 export default function AnswerOption(props: AnswerOptionProps) {
   return (
-    <View style={styles.answerOption}>
-      <Text>{props.isSelected ? "Selected" : "-"}</Text>
+    <View
+      style={[
+        styles.answerOption,
+        props.isSelected ? { borderWidth: 3, borderColor: "#005055" } : null,
+      ]}
+    >
+      <Text>{props.option}</Text>
     </View>
   );
 }

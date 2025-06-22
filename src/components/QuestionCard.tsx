@@ -7,7 +7,7 @@ type QuestionCardProps = {
 };
 
 export default function QuestionCard(props: QuestionCardProps) {
-  const selectedOption = props.question.options[2];
+  const selectedOption = props.question.options[0];
 
   return (
     <View style={styles.questionCard}>
