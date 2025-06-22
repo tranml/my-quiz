@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import QuestionCard from "../components/QuestionCard";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const colorPalette = {
   new: "#FDFEF4",
@@ -7,23 +8,28 @@ const colorPalette = {
 
 export default function QuizScreen() {
   return (
-    <View style={styles.container}>
-      <View>
-        <Text>Question 1/5</Text>
-      </View>
+    <SafeAreaView style={styles.page}>
+      <View style={styles.container}>
+        <View>
+          <Text>Question 1/5</Text>
+        </View>
 
-      <QuestionCard />
+        <QuestionCard />
 
-      <View>
-        <Text>Footer</Text>
+        <View>
+          <Text>Footer</Text>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
+    flex: 1,
     backgroundColor: colorPalette.new,
+  },
+  container: {
     flex: 1,
     justifyContent: "space-between",
     padding: 20,
