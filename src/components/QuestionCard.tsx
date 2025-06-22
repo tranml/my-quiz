@@ -7,14 +7,28 @@ type QuestionCardProps = {
 };
 
 export default function QuestionCard(props: QuestionCardProps) {
+  const selectedOption = props.question.options[2];
+
   return (
     <View style={styles.questionCard}>
       <Text style={styles.question}>{props.question.title}</Text>
       <View style={{ gap: 20 }}>
-        <AnswerOption option={props.question.options[0]} />
-        <AnswerOption option={props.question.options[1]} />
-        <AnswerOption option={props.question.options[2]} />
-        <AnswerOption option={props.question.options[3]} />
+        <AnswerOption
+          option={props.question.options[0]}
+          isSelected={selectedOption === props.question.options[0]}
+        />
+        <AnswerOption
+          option={props.question.options[1]}
+          isSelected={selectedOption === props.question.options[1]}
+        />
+        <AnswerOption
+          option={props.question.options[2]}
+          isSelected={selectedOption === props.question.options[2]}
+        />
+        <AnswerOption
+          option={props.question.options[3]}
+          isSelected={selectedOption === props.question.options[3]}
+        />
       </View>
     </View>
   );
