@@ -1,17 +1,17 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FontAwesome5 } from "@expo/vector-icons";
 
 import questions from "../questions";
 import Card from "../components/Card";
+import CustomButton from "../components/CustomButton";
+import { FontAwesome5 } from "@expo/vector-icons";
 const question = questions[10000];
 
 const colorPalette = {
   new: "#FDFEF4",
   title: "#005055",
   time: "#FF0000",
-  buttonColor: "#005055",
 };
 
 export default function QuizScreen() {
@@ -33,20 +33,16 @@ export default function QuizScreen() {
           <Text style={styles.time}>20s</Text>
         </View>
 
-        <Pressable
-          style={styles.button}
-          onLongPress={() => {
-            console.warn("Next button pressed");
-          }}
-        >
-          <Text style={styles.buttonText}>Next</Text>
-          <FontAwesome5
-            style={styles.buttonIcon}
-            name="arrow-right"
-            size={24}
-            color="white"
-          />
-        </Pressable>
+        <CustomButton
+          title="Next"
+          rightIcon={
+            <FontAwesome5
+              name="arrow-right"
+              size={24}
+              color="white"
+            />
+          }
+        />
       </View>
     </SafeAreaView>
   );
@@ -72,21 +68,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 500,
     marginTop: 16,
-  },
-  button: {
-    backgroundColor: colorPalette.buttonColor,
-    padding: 20,
-    borderRadius: 100,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: 500,
-    letterSpacing: 1.5,
-  },
-  buttonIcon: {
-    position: "absolute",
-    right: 20,
   },
 });
