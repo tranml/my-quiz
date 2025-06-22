@@ -1,20 +1,31 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import QuestionCard from "../components/QuestionCard";
 
 const colorPalette = {
-    new: "#FDFEF4"
+  new: "#FDFEF4",
 };
 
 export default function QuizScreen() {
   return (
-    <View
-      style={{
-        backgroundColor: colorPalette.new,
-        flex: 1,
-        justifyContent: "center",
-        padding: 20,
-      }}
-    >
-      <Text>Hello World from QuizScreen</Text>
+    <View style={styles.container}>
+      <View>
+        <Text>Question 1/5</Text>
+      </View>
+
+      <QuestionCard />
+
+      <View>
+        <Text>Footer</Text>
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colorPalette.new,
+    flex: 1,
+    justifyContent: "space-between",
+    padding: 20,
+  },
+});
