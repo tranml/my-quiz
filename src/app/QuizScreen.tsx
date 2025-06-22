@@ -4,7 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import questions from "../questions";
-const question = questions[0];
+import Card from "../components/Card";
+const question = questions[10000];
 
 const colorPalette = {
   new: "#FDFEF4",
@@ -22,7 +23,13 @@ export default function QuizScreen() {
         </View>
 
         <View>
-          <QuestionCard question={question} />
+          {question ? (
+            <QuestionCard question={question} />
+          ) : (
+            <Card title="Well done!">
+              <Text>Correct answers: 3/5</Text>
+            </Card>
+          )}
           <Text style={styles.time}>20s</Text>
         </View>
 
@@ -33,7 +40,12 @@ export default function QuizScreen() {
           }}
         >
           <Text style={styles.buttonText}>Next</Text>
-          <FontAwesome5 style={styles.buttonIcon} name="arrow-right" size={24} color="white" />
+          <FontAwesome5
+            style={styles.buttonIcon}
+            name="arrow-right"
+            size={24}
+            color="white"
+          />
         </Pressable>
       </View>
     </SafeAreaView>
