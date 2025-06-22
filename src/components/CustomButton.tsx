@@ -1,21 +1,26 @@
-import { Pressable, Text, StyleSheet, View } from "react-native";
+import {
+  Pressable,
+  Text,
+  StyleSheet,
+  View,
+  PressableProps,
+} from "react-native";
 
 type CustomButtonProps = {
   title: string;
   rightIcon?: React.ReactNode;
-  onPress: () => void;
-};
+} & PressableProps;
 
-export default function CustomButton(props: CustomButtonProps) {
+export default function CustomButton({
+  title,
+  rightIcon,
+  ...pressableProps
+}: CustomButtonProps) {
+  console.log(pressableProps);
   return (
-    <Pressable
-      style={styles.button}
-      onPress={() => props.onPress()}
-    >
-      <Text style={styles.buttonText}>{props.title}</Text>
-      {props.rightIcon && (
-        <View style={styles.rightIcon}>{props.rightIcon}</View>
-      )}
+    <Pressable {...pressableProps} style={styles.button}>
+      <Text style={styles.buttonText}>{title}</Text>
+      {rightIcon && <View style={styles.rightIcon}>{rightIcon}</View>}
     </Pressable>
   );
 }

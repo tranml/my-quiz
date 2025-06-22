@@ -45,6 +45,9 @@ export default function QuizScreen() {
           onPress={() => {
             console.warn("CustomButton pressed from QuizScreen");
           }}
+          onLongPress={() => {
+            console.warn("CustomButton LONG pressed from QuizScreen");
+          }}
         />
       </View>
     </SafeAreaView>
