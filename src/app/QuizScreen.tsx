@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const colorPalette = {
   new: "#FDFEF4",
@@ -29,6 +30,7 @@ export default function QuizScreen() {
           }}
         >
           <Text style={styles.buttonText}>Next</Text>
+          <FontAwesome5 style={styles.buttonIcon} name="arrow-right" size={24} color="white" />
         </Pressable>
       </View>
     </SafeAreaView>
@@ -67,5 +69,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: 500,
     letterSpacing: 1.5,
+  },
+  buttonIcon: {
+    position: "absolute",
+    right: 20,
   },
 });
