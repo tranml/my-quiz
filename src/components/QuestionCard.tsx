@@ -2,16 +2,18 @@ import { View } from "react-native";
 import AnswerOption from "./AnswerOption";
 import { Question } from "../types";
 import Card from "./Card";
+import { useState } from "react";
 
 type QuestionCardProps = {
   question: Question;
 };
 
 export default function QuestionCard(props: QuestionCardProps) {
-  const selectedOption = props.question.options[0];
+  const [selectedOption, setSelectedOption] = useState<string | undefined>();
 
   const onOptionSelected = (option: string) => {
     console.warn(option, "selected");
+    setSelectedOption(option);
   };
 
   return (
