@@ -3,6 +3,9 @@ import QuestionCard from "../components/QuestionCard";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome5 } from "@expo/vector-icons";
 
+import questions from "../questions";
+const question = questions[0];
+
 const colorPalette = {
   new: "#FDFEF4",
   title: "#005055",
@@ -19,7 +22,7 @@ export default function QuizScreen() {
         </View>
 
         <View>
-          <QuestionCard />
+          <QuestionCard question={question} />
           <Text style={styles.time}>20s</Text>
         </View>
 
