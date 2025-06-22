@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const colorPalette = {
   new: "#FDFEF4",
   title: "#005055",
+  time: "#FF0000",
 };
 
 export default function QuizScreen() {
@@ -15,7 +16,10 @@ export default function QuizScreen() {
           <Text style={styles.title}>Question 1/5</Text>
         </View>
 
-        <QuestionCard />
+        <View>
+          <QuestionCard />
+          <Text style={styles.time}>20s</Text>
+        </View>
 
         <View>
           <Text>Footer</Text>
@@ -38,5 +42,12 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
     color: colorPalette.title,
+  },
+  time: {
+    textAlign: "center",
+    color: colorPalette.time,
+    fontSize: 12,
+    fontWeight: 500,
+    marginTop: 16,
   },
 });
