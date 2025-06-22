@@ -6,6 +6,7 @@ const colorPalette = {
   new: "#FDFEF4",
   title: "#005055",
   time: "#FF0000",
+  buttonColor: "#005055",
 };
 
 export default function QuizScreen() {
@@ -21,8 +22,8 @@ export default function QuizScreen() {
           <Text style={styles.time}>20s</Text>
         </View>
 
-        <View>
-          <Text>Footer</Text>
+        <View style={styles.button}>
+          <Text style={styles.buttonText}>Next</Text>
         </View>
       </View>
     </SafeAreaView>
@@ -49,5 +50,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 500,
     marginTop: 16,
+  },
+  button: {
+    backgroundColor: colorPalette.buttonColor,
+    padding: 20,
+    borderRadius: 100,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: 500,
+    letterSpacing: 1.5,
   },
 });
