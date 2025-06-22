@@ -3,15 +3,14 @@ import { Pressable, Text, StyleSheet, View } from "react-native";
 type CustomButtonProps = {
   title: string;
   rightIcon?: React.ReactNode;
+  onPress: () => void;
 };
 
 export default function CustomButton(props: CustomButtonProps) {
   return (
     <Pressable
       style={styles.button}
-      onLongPress={() => {
-        console.warn("Next button pressed");
-      }}
+      onPress={() => props.onPress()}
     >
       <Text style={styles.buttonText}>{props.title}</Text>
       {props.rightIcon && (

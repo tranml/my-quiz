@@ -6,7 +6,7 @@ import questions from "../questions";
 import Card from "../components/Card";
 import CustomButton from "../components/CustomButton";
 import { FontAwesome5 } from "@expo/vector-icons";
-const question = questions[10000];
+const question = questions[2];
 
 const colorPalette = {
   new: "#FDFEF4",
@@ -42,6 +42,9 @@ export default function QuizScreen() {
               color="white"
             />
           }
+          onPress={() => {
+            console.warn("CustomButton pressed from QuizScreen");
+          }}
         />
       </View>
     </SafeAreaView>
