@@ -1,11 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import AnswerOption from "./AnswerOption";
-
-type Question = {
-  title: string;
-  options: string[];
-  correctAnswer: string;
-};
+import { Question } from "../types";
 
 type QuestionCardProps = {
   question: Question;

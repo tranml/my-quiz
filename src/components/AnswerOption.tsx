@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet } from "react-native";
+import { Question } from "../types";
 
 type AnswerOptionProps = {
-  option: string;
+  option: Question["options"][number];
 };
 
 export default function AnswerOption(props: AnswerOptionProps) {
