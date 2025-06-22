@@ -17,26 +17,14 @@ export default function QuestionCard(props: QuestionCardProps) {
     <View style={styles.questionCard}>
       <Text style={styles.question}>{props.question.title}</Text>
       <View style={{ gap: 20 }}>
-        <AnswerOption
-          option={props.question.options[0]}
-          isSelected={selectedOption === props.question.options[0]}
-          onPress={() => onOptionSelected(props.question.options[0])}
-        />
-        <AnswerOption
-          option={props.question.options[1]}
-          isSelected={selectedOption === props.question.options[1]}
-          onPress={() => onOptionSelected(props.question.options[1])}
-        />
-        <AnswerOption
-          option={props.question.options[2]}
-          isSelected={selectedOption === props.question.options[2]}
-          onPress={() => onOptionSelected(props.question.options[2])}
-        />
-        <AnswerOption
-          option={props.question.options[3]}
-          isSelected={selectedOption === props.question.options[3]}
-          onPress={() => onOptionSelected(props.question.options[3])}
-        />
+        {props.question.options.map((option, index) => (
+          <AnswerOption
+            key={option + index}
+            option={option}
+            isSelected={selectedOption === option}
+            onPress={() => onOptionSelected(option)}
+          />
+        ))}
       </View>
     </View>
   );
