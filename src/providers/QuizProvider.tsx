@@ -5,10 +5,14 @@ import { Question } from "../types";
 type QuizContextType = {
   questionIndex: number;
   question?: Question;
+  onNext: () => void;
 };
 
 const QuizContext = createContext<QuizContextType>({
   questionIndex: 0,
+  onNext: () => {
+    return;
+  },
 });
 
 export const QuizProvider = ({ children }: PropsWithChildren) => {
@@ -16,8 +20,12 @@ export const QuizProvider = ({ children }: PropsWithChildren) => {
 
   const question = questions[questionIndex];
 
+  const onNext = () => {
+    setQuestionIndex((questionIndex) => questionIndex + 1);
+  };
+
   return (
-    <QuizContext.Provider value={{ questionIndex, question }}>
+    <QuizContext.Provider value={{ questionIndex, question, onNext }}>
       {children}
     </QuizContext.Provider>
   );

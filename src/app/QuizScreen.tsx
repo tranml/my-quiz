@@ -21,9 +21,7 @@ export default function QuizScreen() {
 
   console.log("question: ", question);
 
-  const onNext = () => {
-    // setQuestionIndex(questionIndex + 1);
-  };
+  
 
   return (
     <SafeAreaView style={styles.page}>
