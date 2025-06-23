@@ -8,6 +8,9 @@ import Card from "../components/Card";
 import CustomButton from "../components/CustomButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 
+import { useContext } from "react";
+import { QuizContext } from "../providers/QuizProvider";
+
 const colorPalette = {
   new: "#FDFEF4",
   title: "#005055",
@@ -18,11 +21,16 @@ export default function QuizScreen() {
   const [questionIndex, setQuestionIndex] = useState(0);
 
   const question = questions[questionIndex];
-  console.log(`questions.length: ${questions.length}`);
+  // console.log(`questions.length: ${questions.length}`);
 
   const onNext = () => {
     setQuestionIndex(questionIndex + 1);
   };
+
+
+  // Context API test: context consumer
+  const quizData = useContext(QuizContext);
+  console.log("quizData: ", quizData); //  quizData:  {"questionIndex": 10}
 
   return (
     <SafeAreaView style={styles.page}>
