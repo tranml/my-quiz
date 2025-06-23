@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from "react";
 
 import questions from "../questions";
 import Card from "../components/Card";
 import CustomButton from "../components/CustomButton";
 import { FontAwesome5 } from "@expo/vector-icons";
-const question = questions[2];
 
 const colorPalette = {
   new: "#FDFEF4",
@@ -15,6 +15,15 @@ const colorPalette = {
 };
 
 export default function QuizScreen() {
+  const [questionIndex, setQuestionIndex] = useState(0);
+
+  const question = questions[questionIndex];
+  console.log(`questions.length: ${questions.length}`);
+
+  const onNext = () => {
+    setQuestionIndex(questionIndex + 1);
+  };
+
   return (
     <SafeAreaView style={styles.page}>
       <View style={styles.container}>
@@ -42,12 +51,7 @@ export default function QuizScreen() {
               color="white"
             />
           }
-          onPress={() => {
-            console.warn("CustomButton pressed from QuizScreen");
-          }}
-          onLongPress={() => {
-            console.warn("CustomButton LONG pressed from QuizScreen");
-          }}
+          onPress={onNext}
         />
       </View>
     </SafeAreaView>
