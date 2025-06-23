@@ -8,6 +8,7 @@ type QuizContextType = {
   onNext: () => void;
   selectedOption?: string;
   setSelectedOption: (option: string) => void;
+  score: number;
 };
 
 const QuizContext = createContext<QuizContextType>({
@@ -18,6 +19,7 @@ const QuizContext = createContext<QuizContextType>({
   setSelectedOption: () => {
     return;
   },
+  score: 0,
 });
 
 export const QuizProvider = ({ children }: PropsWithChildren) => {
@@ -46,6 +48,7 @@ export const QuizProvider = ({ children }: PropsWithChildren) => {
         onNext,
         selectedOption,
         setSelectedOption,
+        score,
       }}
     >
       {children}

@@ -15,7 +15,7 @@ const colorPalette = {
 };
 
 export default function QuizScreen() {
-  const { question, questionIndex, onNext } = useQuizContext();
+  const { question, questionIndex, onNext, score } = useQuizContext();
 
   return (
     <SafeAreaView style={styles.page}>
@@ -29,7 +29,7 @@ export default function QuizScreen() {
             <QuestionCard question={question} />
           ) : (
             <Card title="Well done!">
-              <Text>Correct answers: 3/5</Text>
+              <Text>Correct answers: {score}/5</Text>
             </Card>
           )}
           <Text style={styles.time}>20s</Text>
