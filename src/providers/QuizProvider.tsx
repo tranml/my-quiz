@@ -1,8 +1,13 @@
-import { PropsWithChildren } from "react";
-import * as React from "react";
+import { PropsWithChildren, createContext } from "react";
+
+const QuizContext = createContext({});
 
 export const QuizProvider = ({ children }: PropsWithChildren) => {
-  console.warn("QuizProvider");
+  const questionIndex = 10;
 
-  return <>{children}</>;
+  return (
+    <QuizContext.Provider value={{ questionIndex }}>
+      {children}
+    </QuizContext.Provider>
+  );
 };
