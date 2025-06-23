@@ -9,6 +9,7 @@ type QuizContextType = {
   selectedOption?: string;
   setSelectedOption: (option: string) => void;
   score: number;
+  totalQuestions: number;
 };
 
 const QuizContext = createContext<QuizContextType>({
@@ -20,6 +21,7 @@ const QuizContext = createContext<QuizContextType>({
     return;
   },
   score: 0,
+  totalQuestions: 0,
 });
 
 export const QuizProvider = ({ children }: PropsWithChildren) => {
@@ -38,8 +40,6 @@ export const QuizProvider = ({ children }: PropsWithChildren) => {
     setQuestionIndex((questionIndex) => questionIndex + 1);
   };
 
-  console.log("score", score);
-
   return (
     <QuizContext.Provider
       value={{
@@ -49,6 +49,7 @@ export const QuizProvider = ({ children }: PropsWithChildren) => {
         selectedOption,
         setSelectedOption,
         score,
+        totalQuestions: questions.length,
       }}
     >
       {children}
