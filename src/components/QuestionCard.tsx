@@ -9,12 +9,12 @@ type QuestionCardProps = {
 };
 
 export default function QuestionCard(props: QuestionCardProps) {
-  const [selectedOption, setSelectedOption] = useState<string | undefined>();
+  // const [selectedOption, setSelectedOption] = useState<string | undefined>();
 
-  const onOptionSelected = (option: string) => {
-    console.warn(option, "selected");
-    setSelectedOption(option);
-  };
+  // const onOptionSelected = (option: string) => {
+  //   console.warn(option, "selected");
+  //   setSelectedOption(option);
+  // };
 
   return (
     <Card title={props.question.title}>
@@ -23,8 +23,8 @@ export default function QuestionCard(props: QuestionCardProps) {
           <AnswerOption
             key={option + index}
             option={option}
-            isSelected={selectedOption === option}
-            onPress={() => onOptionSelected(option)}
+            // isSelected={selectedOption === option}
+            // onPress={() => onOptionSelected(option)}
           />
         ))}
       </View>
