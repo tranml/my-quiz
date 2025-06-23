@@ -1,9 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
 
-import questions from "../questions";
 import Card from "../components/Card";
 import CustomButton from "../components/CustomButton";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -17,11 +15,7 @@ const colorPalette = {
 };
 
 export default function QuizScreen() {
-  const { question } = useQuizContext();
-
-  console.log("question: ", question);
-
-  
+  const { question, questionIndex, onNext } = useQuizContext();
 
   return (
     <SafeAreaView style={styles.page}>
