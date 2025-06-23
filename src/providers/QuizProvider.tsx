@@ -1,7 +1,15 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 import questions from "../questions";
+import { Question } from "../types";
 
-const QuizContext = createContext({});
+type QuizContextType = {
+  questionIndex: number;
+  question?: Question;
+};
+
+const QuizContext = createContext<QuizContextType>({
+  questionIndex: 0,
+});
 
 export const QuizProvider = ({ children }: PropsWithChildren) => {
   const [questionIndex, setQuestionIndex] = useState(0);
