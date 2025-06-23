@@ -8,8 +8,7 @@ import Card from "../components/Card";
 import CustomButton from "../components/CustomButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-import { useContext } from "react";
-import { QuizContext } from "../providers/QuizProvider";
+import { useQuizContext } from "../providers/QuizProvider";
 
 const colorPalette = {
   new: "#FDFEF4",
@@ -18,7 +17,7 @@ const colorPalette = {
 };
 
 export default function QuizScreen() {
-  const { question } = useContext(QuizContext);
+  const { question } = useQuizContext();
 
   console.log("question: ", question);
 
