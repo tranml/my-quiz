@@ -1,16 +1,29 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from "react";
+
+import questions from "../questions";
+import Card from "../components/Card";
+import CustomButton from "../components/CustomButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const colorPalette = {
   new: "#FDFEF4",
   title: "#005055",
   time: "#FF0000",
-  buttonColor: "#005055",
 };
 
 export default function QuizScreen() {
+  const [questionIndex, setQuestionIndex] = useState(0);
+
+  const question = questions[questionIndex];
+  console.log(`questions.length: ${questions.length}`);
+
+  const onNext = () => {
+    setQuestionIndex(questionIndex + 1);
+  };
+
   return (
     <SafeAreaView style={styles.page}>
       <View style={styles.container}>
@@ -19,19 +32,27 @@ export default function QuizScreen() {
         </View>
 
         <View>
-          <QuestionCard />
+          {question ? (
+            <QuestionCard question={question} />
+          ) : (
+            <Card title="Well done!">
+              <Text>Correct answers: 3/5</Text>
+            </Card>
+          )}
           <Text style={styles.time}>20s</Text>
         </View>
 
-        <Pressable
-          style={styles.button}
-          onLongPress={() => {
-            console.warn("Next button pressed");
-          }}
-        >
-          <Text style={styles.buttonText}>Next</Text>
-          <FontAwesome5 style={styles.buttonIcon} name="arrow-right" size={24} color="white" />
-        </Pressable>
+        <CustomButton
+          title="Next"
+          rightIcon={
+            <FontAwesome5
+              name="arrow-right"
+              size={24}
+              color="white"
+            />
+          }
+          onPress={onNext}
+        />
       </View>
     </SafeAreaView>
   );
@@ -57,21 +78,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 500,
     marginTop: 16,
-  },
-  button: {
-    backgroundColor: colorPalette.buttonColor,
-    padding: 20,
-    borderRadius: 100,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: 500,
-    letterSpacing: 1.5,
-  },
-  buttonIcon: {
-    position: "absolute",
-    right: 20,
   },
 });
