@@ -2,19 +2,28 @@ import { View } from "react-native";
 import AnswerOption from "./AnswerOption";
 import { Question } from "../types";
 import Card from "./Card";
-import { useState } from "react";
+import { useEffect } from "react";
 
 type QuestionCardProps = {
   question: Question;
 };
 
 export default function QuestionCard(props: QuestionCardProps) {
-  // const [selectedOption, setSelectedOption] = useState<string | undefined>();
+  useEffect(() => {
+    console.log("QuestionCard mounted");
 
-  // const onOptionSelected = (option: string) => {
-  //   console.warn(option, "selected");
-  //   setSelectedOption(option);
-  // };
+    return () => {
+      console.log("QuestionCard unmounted");
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("QuestionCard updated", props.question);
+
+    return () => {
+      console.log("QuestionCard renders new question: Clean up");
+    };
+  }, [props.question]);
 
   return (
     <Card title={props.question.title}>
@@ -23,8 +32,6 @@ export default function QuestionCard(props: QuestionCardProps) {
           <AnswerOption
             key={option + index}
             option={option}
-            // isSelected={selectedOption === option}
-            // onPress={() => onOptionSelected(option)}
           />
         ))}
       </View>
