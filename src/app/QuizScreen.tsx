@@ -15,7 +15,7 @@ const colorPalette = {
 };
 
 export default function QuizScreen() {
-  const { question, questionIndex, onNext, score, totalQuestions } =
+  const { question, questionIndex, onNext, score, totalQuestions, bestScore } =
     useQuizContext();
 
   return (
@@ -35,6 +35,7 @@ export default function QuizScreen() {
               <Text>
                 Correct answers: {score}/{totalQuestions}
               </Text>
+              <Text>Best score: {bestScore}</Text>
             </Card>
           )}
           <Text style={styles.time}>20s</Text>
