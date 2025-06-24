@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { View, Text, StyleSheet } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,6 +10,8 @@ import { FontAwesome5 } from "@expo/vector-icons";
 
 import { useQuizContext } from "../providers/QuizProvider";
 import { useEffect, useRef, useState } from "react";
+import EndGameCard from "../components/EndGameCard";
+import LottieView from "lottie-react-native";
 
 const colorPalette = {
   new: "#FDFEF4",
@@ -26,7 +30,6 @@ const useTimer = () => {
     intervalRef.current = setInterval(() => {
       setTime((time) => time - 1);
     }, 1000);
-
   };
 
   const stopTimer = () => {
@@ -62,21 +65,28 @@ export default function QuizScreen() {
           </Text>
         </View>
 
-        <View>
+        <>
           {question ? (
             <View>
               <QuestionCard question={question} />
               <Text style={styles.time}>{time} sec</Text>
             </View>
           ) : (
-            <Card title="Well done!">
-              <Text>
-                Correct answers: {score}/{totalQuestions}
-              </Text>
-              <Text>Best score: {bestScore}</Text>
-            </Card>
+            <>
+              <LottieView
+                source={require("../../assets/congrats-lottie.json")}
+                autoPlay
+                loop={true}
+                style={StyleSheet.absoluteFill}
+              />
+              <EndGameCard
+                score={score}
+                totalQuestions={totalQuestions}
+                bestScore={bestScore}
+              />
+            </>
           )}
-        </View>
+        </>
 
         <CustomButton
           title="Next"
