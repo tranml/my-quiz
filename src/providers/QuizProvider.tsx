@@ -7,6 +7,7 @@ import {
 } from "react";
 import questions from "../questions";
 import { Question } from "../types";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type QuizContextType = {
   questionIndex: number;
