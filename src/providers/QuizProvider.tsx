@@ -8,6 +8,8 @@ type QuizContextType = {
   onNext: () => void;
   selectedOption?: string;
   setSelectedOption: (option: string) => void;
+  score: number;
+  totalQuestions: number;
 };
 
 const QuizContext = createContext<QuizContextType>({
@@ -18,6 +20,8 @@ const QuizContext = createContext<QuizContextType>({
   setSelectedOption: () => {
     return;
   },
+  score: 0,
+  totalQuestions: 0,
 });
 
 export const QuizProvider = ({ children }: PropsWithChildren) => {
@@ -26,8 +30,26 @@ export const QuizProvider = ({ children }: PropsWithChildren) => {
   const question = questions[questionIndex];
 
   const [selectedOption, setSelectedOption] = useState<string | undefined>();
+  const [score, setScore] = useState(0);
+
+  const isFinished = questionIndex >= questions.length;
+
+  const restart = () => {
+    setQuestionIndex(0);
+    setScore(0);
+    setSelectedOption(undefined);
+  };
 
   const onNext = () => {
+    if (isFinished) {
+      restart();
+      return;
+    }
+
+    if (selectedOption === question?.correctAnswer) {
+      setScore((currentScore) => currentScore + 1);
+    }
+
     setQuestionIndex((questionIndex) => questionIndex + 1);
   };
 
@@ -39,6 +61,8 @@ export const QuizProvider = ({ children }: PropsWithChildren) => {
         onNext,
         selectedOption,
         setSelectedOption,
+        score,
+        totalQuestions: questions.length,
       }}
     >
       {children}

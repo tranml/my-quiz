@@ -15,13 +15,16 @@ const colorPalette = {
 };
 
 export default function QuizScreen() {
-  const { question, questionIndex, onNext } = useQuizContext();
+  const { question, questionIndex, onNext, score, totalQuestions } =
+    useQuizContext();
 
   return (
     <SafeAreaView style={styles.page}>
       <View style={styles.container}>
         <View>
-          <Text style={styles.title}>Question 1/5</Text>
+          <Text style={styles.title}>
+            Question {questionIndex + 1}/{totalQuestions}
+          </Text>
         </View>
 
         <View>
@@ -29,7 +32,9 @@ export default function QuizScreen() {
             <QuestionCard question={question} />
           ) : (
             <Card title="Well done!">
-              <Text>Correct answers: 3/5</Text>
+              <Text>
+                Correct answers: {score}/{totalQuestions}
+              </Text>
             </Card>
           )}
           <Text style={styles.time}>20s</Text>
@@ -38,11 +43,7 @@ export default function QuizScreen() {
         <CustomButton
           title="Next"
           rightIcon={
-            <FontAwesome5
-              name="arrow-right"
-              size={24}
-              color="white"
-            />
+            <FontAwesome5 name="arrow-right" size={24} color="white" />
           }
           onPress={onNext}
         />
