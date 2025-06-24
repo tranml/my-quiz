@@ -32,7 +32,20 @@ export const QuizProvider = ({ children }: PropsWithChildren) => {
   const [selectedOption, setSelectedOption] = useState<string | undefined>();
   const [score, setScore] = useState(0);
 
+  const isFinished = questionIndex >= questions.length;
+
+  const restart = () => {
+    setQuestionIndex(0);
+    setScore(0);
+    setSelectedOption(undefined);
+  };
+
   const onNext = () => {
+    if (isFinished) {
+      restart();
+      return;
+    }
+
     if (selectedOption === question?.correctAnswer) {
       setScore((currentScore) => currentScore + 1);
     }
