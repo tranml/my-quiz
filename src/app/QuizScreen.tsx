@@ -7,7 +7,7 @@ import CustomButton from "../components/CustomButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import { useQuizContext } from "../providers/QuizProvider";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const colorPalette = {
   new: "#FDFEF4",
@@ -15,23 +15,40 @@ const colorPalette = {
   time: "#FF0000",
 };
 
-export default function QuizScreen() {
-  const { question, questionIndex, onNext, score, totalQuestions, bestScore } =
-    useQuizContext();
+const useTimer = () => {
   const [time, setTime] = useState(20);
 
-  useEffect(() => {
-    setTime(20);
+  const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
-    const interval =  setInterval(() => {
+  const startTimer = () => {
+    stopTimer();
+    setTime(20);
+    intervalRef.current = setInterval(() => {
       setTime((time) => time - 1);
     }, 1000);
 
-    return () => clearInterval(interval);
+  };
+
+  const stopTimer = () => {
+    clearInterval(intervalRef.current);
+  };
+
+  return { time, startTimer, stopTimer };
+};
+
+export default function QuizScreen() {
+  const { question, questionIndex, onNext, score, totalQuestions, bestScore } =
+    useQuizContext();
+  // const [time, setTime] = useState(20);
+  const { time, startTimer, stopTimer } = useTimer();
+
+  useEffect(() => {
+    startTimer();
   }, [question]);
 
   useEffect(() => {
     if (time <= 0) {
+      stopTimer();
       onNext();
     }
   }, [time]);
