@@ -7,6 +7,7 @@ import CustomButton from "../components/CustomButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import { useQuizContext } from "../providers/QuizProvider";
+import { useEffect, useState } from "react";
 
 const colorPalette = {
   new: "#FDFEF4",
@@ -17,6 +18,23 @@ const colorPalette = {
 export default function QuizScreen() {
   const { question, questionIndex, onNext, score, totalQuestions, bestScore } =
     useQuizContext();
+  const [time, setTime] = useState(20);
+
+  useEffect(() => {
+    setTime(20);
+
+    const interval =  setInterval(() => {
+      setTime((time) => time - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [question]);
+
+  useEffect(() => {
+    if (time <= 0) {
+      onNext();
+    }
+  }, [time]);
 
   return (
     <SafeAreaView style={styles.page}>
@@ -29,7 +47,10 @@ export default function QuizScreen() {
 
         <View>
           {question ? (
-            <QuestionCard question={question} />
+            <View>
+              <QuestionCard question={question} />
+              <Text style={styles.time}>{time} sec</Text>
+            </View>
           ) : (
             <Card title="Well done!">
               <Text>
@@ -38,7 +59,6 @@ export default function QuizScreen() {
               <Text>Best score: {bestScore}</Text>
             </Card>
           )}
-          <Text style={styles.time}>20s</Text>
         </View>
 
         <CustomButton
