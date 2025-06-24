@@ -8,6 +8,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 
 import { useQuizContext } from "../providers/QuizProvider";
 import { useEffect, useRef, useState } from "react";
+import EndGameCard from "../components/EndGameCard";
 
 const colorPalette = {
   new: "#FDFEF4",
@@ -26,7 +27,6 @@ const useTimer = () => {
     intervalRef.current = setInterval(() => {
       setTime((time) => time - 1);
     }, 1000);
-
   };
 
   const stopTimer = () => {
@@ -69,12 +69,11 @@ export default function QuizScreen() {
               <Text style={styles.time}>{time} sec</Text>
             </View>
           ) : (
-            <Card title="Well done!">
-              <Text>
-                Correct answers: {score}/{totalQuestions}
-              </Text>
-              <Text>Best score: {bestScore}</Text>
-            </Card>
+            <EndGameCard
+              score={score}
+              totalQuestions={totalQuestions}
+              bestScore={bestScore}
+            />
           )}
         </View>
 
