@@ -52,7 +52,7 @@ export const QuizProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     if (isFinished && score > bestScore) {
       setBestScore(score);
-      saveBestScore();
+      saveBestScore(score);
     }
   }, [isFinished]);
 
@@ -75,10 +75,10 @@ export const QuizProvider = ({ children }: PropsWithChildren) => {
     setQuestionIndex((questionIndex) => questionIndex + 1);
   };
 
-  const saveBestScore = async () => {
+  const saveBestScore = async (score: number) => {
     try {
-      console.warn("Saving best score", bestScore);
-      await AsyncStorage.setItem("best-score", bestScore.toString());
+      console.warn("Saving best score", score);
+      await AsyncStorage.setItem("best-score", score.toString());
     } catch (error) {
       console.error(error);
     }
